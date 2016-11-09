@@ -11,11 +11,19 @@
 #include <stdint.h>
 #include <Singleton.h>
 
+typedef enum
+{
+    RCZ1 = 0,
+	RCZ2 = 1,
+	RCZ3 = 2,
+	RCZ4 = 3
+} SigfoxMode;
+
 class SigfoxProtocol {
 
 public:
 
-	static void init();
+	static void init(SigfoxMode sigfoxMode);
 
 	static int doRegister();
 
