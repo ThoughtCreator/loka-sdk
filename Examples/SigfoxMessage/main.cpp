@@ -12,11 +12,14 @@ void setup() {
 	Loka::disableWatchdog();
 
 	//Initialize Sigfox Protocol
-	SigfoxProtocol sig;
-	sig.init();
+
+	//RCZ1 - Europe, RCZ2 - Usa/Canada, RCZ4 - Brazil, NZ, AU, ETC
+	SigfoxProtocol::init(RCZ1);
 
 	//Send GPIO Sigfox Message
-	sig.sendGPIOValue(90, 0);
+	SigfoxProtocol::sendGPIOValue(90, 0);
+
+
 
 	console_debug("Sent Sigfox message!");
 
@@ -33,9 +36,6 @@ int main(void) {
 	//Board init with debug enabled
     tc_rtos_init(1);
 
-    //Set board frequency to 24Mhz with Booster ON (Sigfox Radio dependency)
-    Board::set24MHzBoosterOnMode();
-    delay(2000);
 
     setup();
 

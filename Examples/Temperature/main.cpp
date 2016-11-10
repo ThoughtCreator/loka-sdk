@@ -3,20 +3,22 @@
 #include <Loka.h>
 #include <console.h>
 
+#include <drivers/LIS3DE.h>
+
 void setup() {
 
     //Disable board watchdog
     Loka::disableWatchdog();
+
+    LIS3DE::init();
 
 }
 
 void loop(){
 
     //Read the board Temperature
-    double temp = Loka::getTemperature();
-
     //Print the value and sleep for 1 second
-    console_debug("Temp: %d", temp);
+    console_debug("Temp: %f", Loka::getTemperature());
     delay(1000);
 
 }
