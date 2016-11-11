@@ -12,11 +12,8 @@ void setup() {
 
 void loop(){
 
-    //Read the board input voltage
-    double voltage = Loka::getInputVoltage();
-
-    //Print the value and sleep for 1 second
-    console_debug("Input Voltage: %d", voltage);
+    //Read the board input voltage, print the value and sleep for 1 second
+    console_debug("Input Voltage: %f", Loka::getInputVoltage());
     delay(1000);
 
 }
