@@ -4,50 +4,51 @@
 #include <console.h>
 #include <interruptions.h>
 
-digio int_pin = IO1;
 int flag = 0;
 
+static void callback(void){
 
-ISR_FUNC_PTR callback(){
+	//Clear the intrruption flags
+	intClear(BUTTON);
 
 	//Sets the flag as true
 	flag = 1;
 
-	//Clear the intrruption flags
-	intClear(int_pin);
-	return 0;
 }
 
 void setup() {
 
 	//Set GPIO pin mode as INPUT
-	Loka::pinMode(int_pin, INPUT);
+	Loka::pinMode(BUTTON, INPUT);
 
 	//Matched the callback function with the GPIO interruption pin
-	intConnect(int_pin, callback());
+	intConnect(BUTTON, callback);
 
 	//Sets the edge that will trigger the interruption
-	intSetEdge(int_pin, RISING);
+	intSetEdge(BUTTON, RISING);
 
 	//enables the interruption
-	intEnable(int_pin);
+	intEnable(BUTTON);
+
+
 
 }
 
 void loop(){
 
-	//Set GPIO pin mode as INPUT
-	Loka::pinMode(int_pin, INPUT);
+	console_debug("Sleeping in low power mode!!");
 
 	//Enter in low power mode for unlimited time
 	Loka::setLowPowerMode(0);
 
-	if(flag){
+	if(flag == 1) {
 
 		//Print the message after the interruption being triggered
-		console_debug("Callback");
+		console_debug("Interruption!!");
 		flag = 0;
 
+		//Sleep 2 seconds
+		sleep(2);
 	}
 
 }
@@ -58,6 +59,7 @@ int main(void) {
     tc_rtos_init(1);
 
     setup();
+    Loka::disableWatchdog();
 
     for(;;)
         loop();
