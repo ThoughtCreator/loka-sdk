@@ -9,7 +9,7 @@ int flag = 0;
 static void callback(void){
 
 	//Clear the intrruption flags
-	intClear(IO1);
+	intClear(IO7);
 
 	//Sets the flag as true
 	flag = 1;
@@ -21,17 +21,17 @@ void setup() {
 	//Disable board watchdog
 	Loka::disableWatchdog();
 
-	//Set GPIO pin mode as INPUT
-	Loka::pinMode(IO1, INPUT);
+	//Set GPIO pin mode as INPUT_PULLUP
+	Loka::pinMode(IO7, INPUT_PULLUP);
 
 	//Matched the callback function with the GPIO interruption pin
-	intConnect(IO1, callback);
+	intConnect(IO7, callback);
 
 	//Sets the edge that will trigger the interruption
-	intSetEdge(IO1, RISING);
+	intSetEdge(IO7, RISING);
 
 	//enables the interruption
-	intEnable(IO1);
+	intEnable(IO7);
 
 
 
@@ -43,6 +43,8 @@ void loop(){
 
 	//Enter in low power mode for unlimited time
 	Loka::setLowPowerMode(0);
+
+	sleep(1);
 
 	if(flag == 1) {
 
