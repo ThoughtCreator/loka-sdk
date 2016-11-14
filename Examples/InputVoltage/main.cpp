@@ -12,8 +12,8 @@ void setup() {
 
 void loop(){
 
-	//Read the board input voltage,
-	float voltage = Loka::getInputVoltage();
+    //Read the board input voltage,
+    float voltage = Loka::getInputVoltage();
 
     //Print the value
     console_debug("Input Voltage: %f", voltage);
