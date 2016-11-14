@@ -2,73 +2,71 @@
 #include <timer.h>
 #include <Loka.h>
 #include <console.h>
-
-#include <stdio.h>
-#include <stdlib.h>
-
 #include <interruptions.h>
 
-
-digio int_pin = IO1;
 int flag = 0;
 
-ISR_FUNC_PTR callback(){
+static void callback(void){
+
+	//Clear the intrruption flags
+	intClear(IO1);
 
 	//Sets the flag as true
 	flag = 1;
 
-	//Clear the intrruption flags
-	intClear(int_pin);
-	return 0;
-
 }
 
+void setup() {
 
-void setup()
-{
+	//Disable board watchdog
+	Loka::disableWatchdog();
+
 	//Set GPIO pin mode as INPUT
-	Loka::pinMode(int_pin, INPUT);
+	Loka::pinMode(IO1, INPUT);
 
 	//Matched the callback function with the GPIO interruption pin
-	intConnect(int_pin, callback());
+	intConnect(IO1, callback);
 
 	//Sets the edge that will trigger the interruption
-	intSetEdge(int_pin, RISING);
+	intSetEdge(IO1, RISING);
 
 	//enables the interruption
-	intEnable(int_pin);
+	intEnable(IO1);
+
+
 
 }
 
+void loop(){
 
-void loop()
-{
+	console_debug("Sleeping in low power mode!!");
+
 	//Enter in low power mode for unlimited time
 	Loka::setLowPowerMode(0);
 
-	if(flag){
+	if(flag == 1) {
 
 		//Print the message after the interruption being triggered
 		console_debug("Switched / Button Pressed / Movement Detected!");
 		flag = 0;
 
+		//Sleep 2 seconds
+		sleep(2);
 	}
 
 }
 
-
-
 int main(void) {
 
     //Board init with debug enabled
-	tc_rtos_init(1);
+    tc_rtos_init(1);
 
     setup();
 
     for(;;)
         loop();
 
-
     //return 0;
 
 }
+

@@ -7,7 +7,10 @@
 
 void setup() {
 
-    Board::pinMode(LED, OUTPUT);
+	//Disable board watchdog
+	Loka::disableWatchdog();
+
+	Board::pinMode(LED, OUTPUT);
 
 }
 

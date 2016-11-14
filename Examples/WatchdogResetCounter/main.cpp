@@ -12,12 +12,14 @@ void setup() {
 
 void loop(){
 
+	//Print the message
 	console_debug("Program is still Running... Count: %d", count);
 	count++;
 
 	//Reset the watchdog counter
 	Loka::watchdogReset();
 
+	//Sleep for 1 second
 	delay(10000);
 
 }

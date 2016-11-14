@@ -7,8 +7,6 @@
 #include <string.h>
 
 #include <drivers/InputOutput.h>
-#include <SigfoxProtocol.h>
-
 
 void setup() {
 

@@ -10,6 +10,7 @@ void setup() {
     //Disable board watchdog
     Loka::disableWatchdog();
 
+    //Initialize LIS3DE module
     LIS3DE::init();
 
 }
@@ -17,8 +18,12 @@ void setup() {
 void loop(){
 
     //Read the board Temperature
+	float temp = Loka::getTemperature();
+
     //Print the value and sleep for 1 second
-    console_debug("Temp: %f", Loka::getTemperature());
+    console_debug("Temp: %f", temp);
+
+    //Sleep for 1 second
     delay(1000);
 
 }

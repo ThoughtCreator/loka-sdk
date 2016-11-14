@@ -12,22 +12,17 @@ void setup() {
 	Loka::disableWatchdog();
 
 	//Initialize Sigfox Protocol
-
 	//RCZ1 - Europe, RCZ2 - Usa/Canada, RCZ4 - Brazil, NZ, AU, ETC
 	SigfoxProtocol::init(RCZ1);
 
 	//Send GPIO Sigfox Message
 	SigfoxProtocol::sendGPIOValue(90, 0);
-
-
-
 	console_debug("Sent Sigfox message!");
 
 }
 
 void loop(){
 
-    delay(1000);
 
 }
 

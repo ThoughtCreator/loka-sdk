@@ -18,6 +18,9 @@ static void callback(void){
 
 void setup() {
 
+	//Disable board watchdog
+	Loka::disableWatchdog();
+
 	//Set GPIO pin mode as INPUT
 	Loka::pinMode(BUTTON, INPUT);
 
@@ -59,7 +62,6 @@ int main(void) {
     tc_rtos_init(1);
 
     setup();
-    Loka::disableWatchdog();
 
     for(;;)
         loop();
