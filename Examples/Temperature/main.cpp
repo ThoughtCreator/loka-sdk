@@ -18,7 +18,7 @@ void setup() {
 void loop(){
 
     //Read the board Temperature
-	float temp = Loka::getTemperature();
+    float temp = Loka::getTemperature();
 
     //Print the value and sleep for 1 second
     console_debug("Temp: %f", temp);
