@@ -29,13 +29,13 @@ void loop(){
 int main(void) {
 
 	//Board init with debug enabled
-    tc_rtos_init(1);
+	tc_rtos_init(1);
 
 
-    setup();
+	setup();
 
-    for(;;)
-        loop();
+	for(;;)
+		loop();
 
     //return 0;
 
