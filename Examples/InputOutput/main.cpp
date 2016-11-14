@@ -30,10 +30,10 @@ int main(void) {
 	//Board init with debug enabled
 	tc_rtos_init(1);
 
-    setup();
-
-    for(;;)
-        loop();
+	setup();
+	
+	for(;;)
+		loop();
 
 
     //return 0;
