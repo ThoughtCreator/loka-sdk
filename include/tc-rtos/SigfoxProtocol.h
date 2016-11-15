@@ -43,7 +43,7 @@ public:
 	static int sendRawMessage(unsigned char *message, int size);
 	static int sendRawDownlinkMessage(unsigned char *message, int size, unsigned char *response);
 
-	static void registerCommand(char *cmd, char * f (char *));
+	static void registerCommand(char cmd, void * f (unsigned char *));
 
 
 private:

@@ -3,23 +3,25 @@
 #include <Loka.h>
 #include <console.h>
 
-#include <drivers/InputOutput.h>
+#include <drivers/LIS3DE.h>
 
+/** Setup sample with INTERRUPTION */
 void setup() {
 
-	//Disable board watchdog
-	Loka::disableWatchdog();
+	console_debug("Setup accelerometer demo");
+	LIS3DE::init();
 
-	Board::pinMode(LED, OUTPUT);
+	LIS3DE::setClick(2,0x28);
+	LIS3DE::setWakeUp(0x0,0x02,0x01);
 
 }
 
 void loop(){
 
-	Board::digitalWrite(LED, HIGH);
-	sleep(1);
-	Board::digitalWrite(LED, LOW);
-	sleep(1);
+
+	if
+
+
 
 }
 
@@ -31,11 +33,11 @@ int main(void) {
 	tc_rtos_init(1);
 
 	setup();
-	
+
 	for(;;)
 		loop();
 
 
-    //return 0;
+	//return 0;
 
 }

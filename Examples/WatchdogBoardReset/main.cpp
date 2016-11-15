@@ -6,14 +6,14 @@
 
 void setup() {
 
-	console_debug("Board Will reset...");
+    console_debug("Board Will reset...");
 
 }
 
 
 void loop(){
 
-	delay(10000);
+    delay(10000);
 
 }
 

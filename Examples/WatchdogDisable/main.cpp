@@ -6,17 +6,17 @@
 
 void setup() {
 
-	//Disable board watchdog
-	Loka::disableWatchdog();
+    //Disable board watchdog
+    Loka::disableWatchdog();
 
-	console_debug("Board Will not reset...");
+    console_debug("Board Will not reset...");
 
 }
 
 
 void loop(){
 
-	delay(10000);
+    delay(10000);
 
 }
 

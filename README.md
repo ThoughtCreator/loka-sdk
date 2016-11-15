@@ -227,19 +227,19 @@ If receives a debug flag as argument, that if it is enabled, the serial port wil
 ![](Images/lokaboard_-_pins.png)  
 
 
-| **Pin Name**         | **Description**           |
-|----------------------|---------------------------|
-| IO0                  | GPIO / A0                 |
-| IO1                  | GPIO / A1                 |
-| IO2                  | GPIO / INT0               |
-| IO3                  | GPIO / INT1               |
-| IO4                  | GPIO / _SC                |
-| IO5                  | GPIO / MISO / Rx Serial   |
-| IO6                  | GPIO / MOSI / Tx Serial   |
-| IO7                  | GPIO / SCLK               |
-| BUTTON               | GPIO                      |
-| LED                  | GPIO                      |
-| ACCELEROMETER        |                           |
+| **Pin Name**         | **Description**           | **Interruption**         |
+|----------------------|---------------------------|--------------------------|
+| IO0                  | GPIO / A0                 | No                       |
+| IO1                  | GPIO / A1                 | No                       |
+| IO2                  | GPIO / INT0               | Yes                      |
+| IO3                  | GPIO / INT1               | Yes                      |
+| IO4                  | GPIO / _SC                | No                       |
+| IO5                  | GPIO / MISO / Rx Serial   | No                       |
+| IO6                  | GPIO / MOSI / Tx Serial   | No                       |
+| IO7                  | GPIO / SCLK               | Yes                      |
+| BUTTON               | GPIO                      | Yes                      |
+| LED                  | GPIO                      | No                       |
+| ACCELEROMETER        |                           | Yes                      |
 
 
 Edge Enum:
@@ -256,9 +256,9 @@ Mode Enum:
 
 - INPUT
 - OUTPUT
-- INPUT_PULLUP
+- INPUT_PULLDOWN
 
-NOTE: By Default in the CPU internal resistor is set to PULLUP. Otherwise "digitalWrite(HIGH)" must be called to change it to PULLDOWN.
+NOTE: By Default in the CPU internal resistor is set to PULLDOWN. Otherwise "digitalWrite(HIGH)" must be called to change it to PULLUP.
 
 
 ### Loka.h
