@@ -4,7 +4,6 @@
  *  Created on: 08/02/2016
  *      Author: Dev
  */
-#include <config.h>
 
 #ifndef DRIVERS_NETWORK_ESP8266_INCLUDE_ESP8266_H_
 #define DRIVERS_NETWORK_ESP8266_INCLUDE_ESP8266_H_

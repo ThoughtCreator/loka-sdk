@@ -1,5 +1,5 @@
 /*
- * LIS4DE.h
+ * LIS3DE.h
  *
  *  Created on: Oct 12, 2016
  *      Author: pedro
@@ -46,33 +46,46 @@ typedef enum
 
 } LIS3DE_dataRate_t;
 
+
+typedef struct {
+	float x;
+	float y;
+	float z;
+} LIS3DE_Aceleration;
+
 class LIS3DE {
 public:
 
 
-	static int init();
+	static int init(uint8_t mode);
+	static int getTemperature();
 
+	static void setAxis(uint8_t xx, uint8_t yy , uint8_t zz);
 	static  void setRange(LIS3DE_range_t range);
 	static  int getRange(void);
-
 	static void setDataRate(LIS3DE_dataRate_t dataRate);
 	static LIS3DE_dataRate_t getDataRate(void);
 
-	static int getTemperature();
 
-
+	//MODE 1 Methods
 	static void setWakeUp(uint8_t itr, uint8_t thresh, uint8_t timelimit = 1);
 	static char getWakeUp();
-
-	static  void setClick(uint8_t c, uint8_t clickthresh, uint8_t duration = 20, uint8_t timelatency = 30, uint8_t timewindow = 20);
+	static  void setClick(uint8_t mode, uint8_t clickthresh, uint8_t duration = 20, uint8_t timelatency = 30, uint8_t timewindow = 20);
 	static  uint8_t getClick(void);
+
+	//MODE 2 Methods
+	static void setWatermark(uint8_t level, uint8_t itr );
+	static int getWatermark();
+	static int checkWatermarkLevel();
+	static int getNumberofAvailableSamples();
+	static LIS3DE_Aceleration * readAxis();
 
 
 	static int8_t x, y, z;
-	static  float x_g, y_g, z_g;
 
+
+private:
 };
-
 typedef LIS3DE Accelerometer;
 
 

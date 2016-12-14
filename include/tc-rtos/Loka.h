@@ -32,6 +32,8 @@ public:
 	static void digitalWrite(digio gpio, uint8_t value);
 	static unsigned char digitalRead(digio gpio);
 	static void pinMode(digio io, uint8_t mode);
+	static unsigned int analogRead(digio io);
+
 
 
 	static char* uptime(char *c);
