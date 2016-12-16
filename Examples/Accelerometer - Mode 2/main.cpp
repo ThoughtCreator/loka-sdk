@@ -11,7 +11,7 @@ void setup() {
 	console_debug("Setup accelerometer demo");
 
 	// init accelerometer
-	LIS3DE::init();
+	LIS3DE::init(2);
 
 	/*
 	 * On this mode the acc stores the samples in a buffer,

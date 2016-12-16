@@ -1,6 +1,8 @@
 eclipse.preferences.version=1
 encoding//Debug/include/lib/subdir_rules.mk=UTF-8
 encoding//Debug/include/lib/subdir_vars.mk=UTF-8
+encoding//Debug/include/subdir_rules.mk=UTF-8
+encoding//Debug/include/subdir_vars.mk=UTF-8
 encoding//Debug/makefile=UTF-8
 encoding//Debug/objects.mk=UTF-8
 encoding//Debug/sources.mk=UTF-8

@@ -11,24 +11,27 @@ void setup() {
 	console_debug("Setup accelerometer demo");
 
 	// init accelerometer
-	LIS3DE::init();
+	LIS3DE::init(1);
 
 	/*
-	 * Set click for the accelerometer
+	 * Set click event for the accelerometer
 	 * params:	 mode 0- dissable
 	 * 				  1- turn on all axes & singletap
 	 * 				  2- turn on all axes & doubletap
 	 *
 	 *  		 threshold = from 0x00 to 0x7F
 	 */
-	LIS3DE::setClick(2,0x28);
+	LIS3DE::setClick(2,0x28);		//on ACC side click have interruptions configured by default
 
 
 	/*
-	* Set click for the accelerometer
+	* Set wakeUp event  for the accelerometer
 	* params:	interruption pin enable , thresh, timelimit
 	*/
-	LIS3DE::setWakeUp(0x0,0x02,0x01);
+	LIS3DE::setWakeUp(0x01,0x02,0x01); 	//on ACC side wakeup interruption are enable now...
+
+
+	//NOTE: to generate interruptions, is necessary to configure the interruption on the main MCU side for the ACCELEROMETER pin... See interruptions documentation
 
 	Loka::disableWatchdog();
 

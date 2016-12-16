@@ -11,7 +11,7 @@ void setup() {
     Loka::disableWatchdog();
 
     //Initialize LIS3DE module
-    LIS3DE::init();
+    LIS3DE::init(1);
 
 }
 

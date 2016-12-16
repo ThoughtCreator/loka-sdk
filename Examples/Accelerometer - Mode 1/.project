@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>Accelerometer - Mode 1</name>
+	<name>Accelerometer-Mode1</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -24,10 +24,21 @@
 		<nature>org.eclipse.cdt.core.ccnature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>include</name>
+			<type>2</type>
+			<locationURI>PARENT-2-PROJECT_LOC/include</locationURI>
+		</link>
+	</linkedResources>
 	<variableList>
 		<variable>
 			<name>copy_PARENT</name>
 			<value>$%7BTI_PRODUCTS_DIR%7D/Users/pedro/workspace_v6_1_3/msp-sdk-demos</value>
+		</variable>
+		<variable>
+			<name>copy_PARENT1</name>
+			<value>$%7BPARENT-2-PROJECT_LOC%7D/msp-sdk-demos</value>
 		</variable>
 	</variableList>
 </projectDescription>
