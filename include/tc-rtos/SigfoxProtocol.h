@@ -46,6 +46,10 @@ public:
 	static void registerCommand(char cmd, void * f (unsigned char *));
 
 
+	/** Optional Functions to turn on and turn off radio */
+	static int turnOnRadio();
+	static int turnOffRadio();
+
 private:
 
 };

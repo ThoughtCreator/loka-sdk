@@ -34,3 +34,6 @@
 *.app
 
 git-*
+
+Debug
+Release

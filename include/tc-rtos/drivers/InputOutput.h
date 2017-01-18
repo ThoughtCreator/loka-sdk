@@ -27,8 +27,8 @@ enum {
 };
 
 enum {
-	HIGH,
-	LOW
+	LOW,
+	HIGH
 };
 
 

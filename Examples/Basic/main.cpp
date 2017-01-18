@@ -11,13 +11,16 @@
 void setup() {
 
 	Board::pinMode(LED, OUTPUT);
+	console_close();
+	//reset the serial Port should be done every time that freq changes
+	Board::set24MHzBoosterOnMode();
+	console_init();
 
 }
 
 void loop(){
 
 	Board::watchdogReset();
-
 	Board::digitalWrite(LED, HIGH);
 	console_debug("Hello Loka!!");
 	sleep(1);

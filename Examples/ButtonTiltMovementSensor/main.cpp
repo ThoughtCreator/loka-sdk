@@ -6,10 +6,12 @@
 
 int flag = 0;
 
+//Please connet the Sensor in the GTOOVE DIGITAL P3
+
 static void callback(void){
 
 	//Clear the intrruption flags
-	intClear(IO7);
+	intClear(IO2);
 
 	//Sets the flag as true
 	flag = 1;
@@ -22,16 +24,16 @@ void setup() {
 	Loka::disableWatchdog();
 
 	//Set GPIO pin mode as INPUT_PULLUP
-	Loka::pinMode(IO7, INPUT_PULLUP);
+	Loka::pinMode(IO2, INPUT_PULLUP);
 
 	//Matched the callback function with the GPIO interruption pin
-	intConnect(IO7, callback);
+	intConnect(IO2, callback);
 
 	//Sets the edge that will trigger the interruption
-	intSetEdge(IO7, RISING);
+	intSetEdge(IO2, RISING);
 
 	//enables the interruption
-	intEnable(IO7);
+	intEnable(IO2);
 
 
 

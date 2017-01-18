@@ -10,15 +10,18 @@
 
 
 
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 	void console_write(char *output);
 	void console_debug(char *format, ...);
+	void  console_close();
+	void console_init();
 #ifdef __cplusplus
 }
+
 #endif
 
-
-
 #endif /* LIBS_SYSTEM_INCLUDE_CONSOLEINTERFACE_H_ */
+

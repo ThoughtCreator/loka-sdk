@@ -12,12 +12,28 @@ void setup() {
 
 void loop(){
 
-    //Read the board current CPU frequency
+	console_close();
+	Board::set1MHzBoosterOffMode();
+	//reset the serial Port should be done every time that freq changes
+	console_init();
+
+	//Read the board current CPU frequency
     unsigned long freq =  Loka::getCurrentFrequency();
 
     //Print the value and sleep for 1 second
     console_debug("Current Frequency: %lu", freq);
     delay(1000);
+
+	console_close();
+	Board::set24MHzBoosterOnMode();
+	//reset the serial Port should be done every time that freq changes
+	console_init();
+
+	//Read the board current CPU frequency
+	freq =  Loka::getCurrentFrequency();
+	//Print the value and sleep for 1 second
+	console_debug("Current Frequency: %lu", freq);
+	delay(1000);
 
 }
 

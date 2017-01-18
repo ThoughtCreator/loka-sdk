@@ -20,6 +20,8 @@ void usleep(unsigned long milliseconds);
 void delay(unsigned long milliseconds);
 
 unsigned long millis();
+void pause_timer();
+void start_timer();
 
 void setTime(int32_t ts);
 int32_t getTime();

@@ -12,6 +12,11 @@ void setup() {
 
 	Board::pinMode(LED, OUTPUT);
 
+
+	console_close();
+	// Led Consumption needs the booster On
+	Board::set24MHzBoosterOnMode();
+	console_init();
 }
 
 void loop(){

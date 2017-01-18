@@ -18,7 +18,6 @@ public:
 	static void resetCause(char* message);
 
 	static void set1MHzBoosterOffMode();
-	static void set1MHzBoosterOnMode();
 	static void set24MHzBoosterOnMode();
 	static unsigned long getCurrentFrequency();
 

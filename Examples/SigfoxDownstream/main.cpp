@@ -22,8 +22,8 @@ void * sfxCallBack(unsigned char * receivedMessage)	{
 
 void setup() {
 
-	//Init Sigfox in RCZ4 mode
-	SigfoxProtocol::init(RCZ4);
+	//Init Sigfox in RCZ2 mode
+	SigfoxProtocol::init(RCZ2);
 
 	//Register a callback for a downstream with the header (first byte) equal to 0x0E
 	//The 0x0E is the time request to the TC Core

@@ -14,7 +14,7 @@ void setup() {
 	 //Read the previous stored value for the paramater "abc"
 	 char* value = (char*) malloc(sizeof(char)*20);
 	 Loka::getConfig("abc", value);
-	 console_debug("Previous value: abc=%s", value);
+	 console_debug("Before set config, value: abc=%s", value);
 
 	 //Set the parameter "abc" to "new_value"
 	 Loka::setConfig("abc", "new_value");
@@ -22,7 +22,7 @@ void setup() {
 	 //Read the stored value for the paramater "abc" after the setConfig
 	 char* value_after = (char*) malloc(sizeof(char)*20);
 	 Loka::getConfig("abc", value_after);
-	 console_debug("Previous value: abc=%s", value_after);
+	 console_debug("After set config, value: abc=%s", value_after);
 
 
 }

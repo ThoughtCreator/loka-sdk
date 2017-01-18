@@ -28,7 +28,7 @@ void setup() {
 	* Set wakeUp event  for the accelerometer
 	* params:	interruption pin enable , thresh, timelimit
 	*/
-	LIS3DE::setWakeUp(0x01,0x02,0x01); 	//on ACC side wakeup interruption are enable now...
+	LIS3DE::setWakeUp(0x00,0x02,0x01); 	//on ACC side wakeup interruption are enable now...
 
 
 	//NOTE: to generate interruptions, is necessary to configure the interruption on the main MCU side for the ACCELEROMETER pin... See interruptions documentation
@@ -45,9 +45,12 @@ void loop(){
 		console_debug("ACC WakeUp Movement!");
 	}
 
+
 	if(LIS3DE::getClick()){
 		console_debug("ACC Click Movement!");
 	}
+
+	sleep(1);
 
 
 }

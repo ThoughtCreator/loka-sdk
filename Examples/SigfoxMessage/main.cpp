@@ -13,7 +13,7 @@ void setup() {
 
 	//Initialize Sigfox Protocol
 	//RCZ1 - Europe, RCZ2 - Usa/Canada, RCZ4 - Brazil, NZ, AU, ETC
-	SigfoxProtocol::init(RCZ1);
+	SigfoxProtocol::init(RCZ2);
 
 	//Send GPIO Sigfox Message
 	SigfoxProtocol::sendGPIOValue(90, 0);
