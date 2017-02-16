@@ -8,6 +8,7 @@
 #ifndef SERIALPORT_H_
 #define SERIALPORT_H_
 
+#include <stdint.h>
 
 class SerialPort {
 	public:

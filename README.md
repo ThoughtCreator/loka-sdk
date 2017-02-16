@@ -43,7 +43,6 @@ Loka SDK
 	
 	-   [LIS3DE.h](#lis3deh)   
 	
-    -   [ESP8266.h](#esp8266h)
 
 	
 -   [Docking Station](#docking-station)
@@ -64,7 +63,7 @@ This repository provides the SDK for the LOKA development board.
 The Loka Module System is revolutionary in its ability to be both flexible and scalable. Is composed by a multi-purpose board, a device management and geo location tool. The objective is to be the IoT platform of choice due to low cost, high flexibility and availability.
 
 The multipurpose module, whose main function is a standalone low cost tracker, can be used as a mother board or a daughter board allowing to connect a variety of sensors.
-This revolutionary concept, It addresses the cost and the Time to Market problem to introduce the many new services that are made possible by low power, low cost Sigfox network.
+This revolutionary concept, addresses the cost and the Time to Market problem to introduce the many new services that are made possible by low power, low cost Sigfox network.
 
 ![](Images/lokaboard_-_98x300.png)  
 
@@ -137,7 +136,7 @@ SDK Installation
 
 >  Add the tc-rtos-lib.lib file to the include folder
 
->  NOTE: The project examples on this repository already are configured to include the indclude folder on the build process.
+>  NOTE: The project examples on this repository are already configured to include the indclude folder on the build process.
 
 
 
@@ -145,7 +144,7 @@ SDK Installation
 Bootloader
 ----------
 
-The LOKA board already provides a bootloader shell to facilitate the firmware upload and the paramater configuration.
+The LOKA board provides a bootloader shell to facilitate the firmware upload and the paramater configuration.
 
 To access the bootloader, please follow the next steps.
 
@@ -177,7 +176,7 @@ The Bootloader shell avalilable commands:
 
 -   network update \<url\>
 
--   sigfox id
+-   sn
 
 
 
@@ -247,6 +246,7 @@ If receives a debug flag as argument, that if it is enabled, the serial port wil
 | BUTTON               | GPIO                      | Yes                      |
 | LED                  | GPIO                      | No                       |
 | ACCELEROMETER        |                           | Yes                      |
+| HALL                 |                           | Yes                      |    
 
 
 Edge Enum:
@@ -263,9 +263,9 @@ Mode Enum:
 
 - INPUT
 - OUTPUT
-- INPUT_PULLDOWN
+- INPUT_PULLUP
 
-NOTE: By Default in the CPU internal resistor is set to PULLDOWN. Otherwise "digitalWrite(HIGH)" must be called to change it to PULLUP.
+NOTE: By Default in the CPU internal resistor is set to PULLUP. Otherwise "digitalWrite(HIGH)" must be called to change it to PULLDOWN.
 
 
 
@@ -276,7 +276,7 @@ The Loka.h class implements the most generic methods to configure the behavhiour
 
 #### Board
 
-The following methods retrieves and allow the configuration of the LOKA CPU.
+The following methods retrieves and allows the configuration of the LOKA CPU.
 
 | **Method**                                                 | **Description**                                                                                          | **Syntax**                                                                   | **Parameters**                                                                                                                                 | **Return**                                                                                      |
 |------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
@@ -284,7 +284,7 @@ The following methods retrieves and allow the configuration of the LOKA CPU.
 | resetCause(char\* message)                                 | Gets the latest reset cause message. 								                                    | static void Loka::resetCause(char\* message)                                 | message - The reset cause message to be logged.                                                                                                | None                                                                                            |
 | set1MHzBoosterOffMode()                                    | Sets the board CPU frequency to 1Mhz and turns Off the Booster.                                          | static void Loka::set1MHzBoosterOffMode()                                    | None                                                                                                                                           | None                                                                                            |
 | set24MHzBoosterOnMode()                                    | Sets the board CPU frequency to 24Mhz and turns On the Booster.                                          | static void Loka::set24MHzBoosterOnMode()                                    | None                                                                                                                                           | None                                                                                            |
-| setLowPowerMode(int duration)                              | Sets the board to into low power mode for the specified duration.                                        | static char\* Loka::setLowPowerMode(int duration)                            | duration: The low power mode duration in seconds.                                                                                              | None                                                                                            |
+| setLowPowerMode(int duration)                              | Sets the board to into low power mode for the specified duration, or until an interruption happen.       | static char\* Loka::setLowPowerMode(int duration)                            | duration: The low power mode duration in seconds.  (zero to sleep forever)                                                                     | None                                                                                            |
 | getCurrentFrequency()                                      | Gets the current CPU frequency value.                                                                    | static unsigned long Loka::getCurrentFrequency()                             | None                                                                                                                                           | CPU Current Frequency                                                                           |
 | getTemperature()                                           | Gets the board temperature.                                                                              | static double Loka::temperature()                                            | None                                                                                                                                           | Current board Temperature in ºC.                                                                |
 | getInputVoltage()                                          | Gets the board input voltage.                                                                            | static double Loka::getInputVoltage()                                        | None                                                                                                                                           | Current board input voltage in Volts.                                                           |
@@ -292,7 +292,7 @@ The following methods retrieves and allow the configuration of the LOKA CPU.
 
 #### Parameters
 
-The following methods allow the configuration of a a set of parameters that will be stored on the flash memory. These are presistent on power loss.
+The following methods allow the configuration of a a set of parameters that will be stored on the flash memory. These are presistent even on power loss.
 
 | **Method**                                                 | **Description**                                                                                          | **Syntax**                                                                   | **Parameters**                                                                                                                                 | **Return**                                                                                      |
 |------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
@@ -321,8 +321,8 @@ The GPIO methods configure the board pin modes and reads/writes the pin status v
 
 | **Method**                                                 | **Description**                                                                                          | **Syntax**                                                                   | **Parameters**                                                                                                                                 | **Return**                                                                                      |
 |------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
-| pinMode(digio gpio*, uint8\_t mode)                        | Sets the GPIO pin to the given mode.                                                                     | static void Loka::pinMode(digio *gpio, uint8\_t* mode)                       | gpio: The GPIO pin. mode: The desiged GPIO pin mode. Possible mode values: OUTPUT, INPUT                                                       | None                                                                                            |
-| digitalWrite(digio gpio*, uint8\_t* value)                 | Sets the GPIO pin to the given value.                                                                    | static void Loka::digitalWrite(digio *gpio, uint8\_t* value)                 | gpio: The GPIO pin. value: The value itself.                                                                                                   | None                                                                                            |
+| pinMode(digio gpio*, uint8\_t mode)                        | Sets the GPIO pin to the given mode.                                                                     | static void Loka::pinMode(digio *gpio, uint8\_t* mode)                       | gpio: The GPIO pin. mode: The desiged GPIO pin mode. Possible mode values: OUTPUT, INPUT, INPUT_PULLDOWN                                       | None                                                                                            |
+| digitalWrite(digio gpio*, uint8\_t* value)                 | Sets the GPIO pin to the given value.                                                                    | static void Loka::digitalWrite(digio *gpio, uint8\_t* value)                 | gpio: The GPIO pin. value: The value itself (HIGH, LOW, 0 or 1).                                                                               | None                                                                                            |
 | digitalRead(digio gpio*)                                   | Gets the GPIO pin value.                                                                                 | static unsigned char *Loka::*digitalWrite(digio *gpio, uint8\_t* value)      | gpio: The GPIO pin.                                                                                                                            | The GPIO value.                                                                                 |
 
 #### Analog
@@ -343,7 +343,7 @@ The interruptions.h class provides the methods to handle the CPU interruptions u
 | intEnable(digio io, ISR\_FUNC\_PTR func)  | Enables the interruption.                             | uint8\_t intEnable(digio io)                        | io: The board GPIO pin with interruption.                                                                                     | HAL\_DIGIO\_OK - in case of sucesss.  HAL\_DIGIO\_ERROR - in case of error. |
 | intDisable(digio io)                      | Disables the interruption.                            | uint8\_t intDisable(digio io)                       | io: The board GPIO pin with interruption.                                                                                     | HAL\_DIGIO\_OK - in case of sucesss.  HAL\_DIGIO\_ERROR - in case of error. |
 | intClear(digio io)                        | Clears the interruption internal flags.               | uint8\_t intClear(digio io)                         | io: The board GPIO pin with interruption.                                                                                     | HAL\_DIGIO\_OK - in case of sucesss.  HAL\_DIGIO\_ERROR - in case of error. |
-| intSetEdge(digio io)                      | Sets the edge that will trigger the interruption.     | uint8\_t intSetEdge(digio io, uint8\_t edge)        | io: The board GPIO pin with interruption. edge: The edge that will trigger the interruption. Possible Values: RISING/FALLING  | HAL\_DIGIO\_OK - in case of sucesss.  HAL\_DIGIO\_ERROR - in case of error. |
+| intSetEdge(digio io)                      | Sets the edge that will trigger the interruption.     | uint8\_t intSetEdge(digio io, uint8\_t edge)        | io: The board GPIO pin with interruption. edge: The edge that will trigger the interruption. Possible Values: RISING or FALLING | HAL\_DIGIO\_OK - in case of sucesss.  HAL\_DIGIO\_ERROR - in case of error. |
 
 
 ### timer.h
@@ -391,6 +391,8 @@ NOTE: It depends that the board debug flag on the tc_rtos_init(int debug) to be 
 |------------------------------------|-------------------------------------------------------|-----------------------------------------|------------------------------------------------------------------|------------------------------|
 | console\_write(char \*output)      | Writes the output to the serial port.                 | void console\_write(char \*output)      | output: The output to be sent to thought the serial port         | None                         |
 | console\_debug(char \*format, ...) | Writes the formated output string to the serial port. | void console\_debug(char \*format, ...) | format: The output string to be sent to throught the serial port | None                         |
+| console\_init()                    | Initilizes the console serial port.                   | void console\_init()                    | None                                                             | None                         |
+| console\_close()                   | Closes the console serial port.                       | void console\_close()                   | None                                                             | None                         |
 
 ### LIS3DE.h
 

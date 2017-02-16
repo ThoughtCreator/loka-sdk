@@ -23,7 +23,7 @@ enum {
 enum {
 	INPUT,
 	OUTPUT,
-	INPUT_PULLUP
+	INPUT_PULLDOWN
 };
 
 enum {
@@ -43,6 +43,7 @@ static digio IO7 = {2,7};
 static digio BUTTON = {1,1};
 static digio LED = {4,0};
 static digio ACCELEROMETER = {1,3};
+static digio HALL = {1,2};
 static digio A0 = {5,0};
 static digio A1 = {5,1};
 
