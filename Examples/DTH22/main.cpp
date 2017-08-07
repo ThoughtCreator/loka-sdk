@@ -156,6 +156,9 @@ int dthRead(digio pin){
 
 void setup() {
 
+	// Sensor plugged on the port 8 (IO7), for this sensor could be any port.
+	pin=IO7;
+
 	console_close();
 	// tunr on Booster because of the consumption
 	Board::set24MHzBoosterOnMode();
@@ -165,8 +168,7 @@ void setup() {
 	Board::pinMode(pin, OUTPUT);
 	Board::digitalWrite(pin, HIGH);
 
-	// Sensor plugged on the port 8 (IO7), for this sensor could be any port.
-	pin=IO7;
+
 
 
 }

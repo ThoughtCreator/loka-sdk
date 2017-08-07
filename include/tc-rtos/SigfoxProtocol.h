@@ -26,10 +26,11 @@ public:
 	static void init(SigfoxMode sigfoxMode);
 
 	static int doRegister();
+	static int doRegister(char *extra, int size);
 
 	static int sendGPIOValue(int gpio, char value);
 	static int sendAnalogValue(int port, double value);
-	static int sendGPSPosition(double latitude, double longitude, double speed, double timestamp);
+	static int sendGPSPosition(float latitude, float longitude, float speed);
 
 	static int sendLog(char log);
 	static int sendDataLogger(int gpio, int32_t counter, int32_t time);
@@ -49,6 +50,9 @@ public:
 	/** Optional Functions to turn on and turn off radio */
 	static int turnOnRadio();
 	static int turnOffRadio();
+
+	static int getDefaultMode(); //Get Default Lib Sigfox Radio Configuration Zone
+
 
 private:
 
